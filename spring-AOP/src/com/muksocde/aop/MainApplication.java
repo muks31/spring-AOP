@@ -3,6 +3,7 @@ package com.muksocde.aop;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.mukscode.aop.dao.AccountDAO;
+import com.mukscode.aop.dao.MembershipDAO;
 
 public class MainApplication {
 
@@ -14,13 +15,14 @@ public class MainApplication {
 		//get the bean from spring container
 		AccountDAO theAcctDAO = context.getBean("accountDAO", AccountDAO.class);
 		
+		MembershipDAO membershipDAO = context.getBean("membershipDAO", MembershipDAO.class);
+		
 		//call the business method
 		theAcctDAO.addAccount();
 		
+		//call the membership business method
+		membershipDAO.addMember();
 		
-		//do it again
-		System.out.println("\n Let's call it again! \n");
-		theAcctDAO.addAccount();
 		
 		//close the context
 		context.close();
