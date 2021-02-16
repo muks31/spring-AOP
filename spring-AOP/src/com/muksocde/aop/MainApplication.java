@@ -2,6 +2,7 @@ package com.muksocde.aop;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.mukscode.aop.dao.Account;
 import com.mukscode.aop.dao.AccountDAO;
 import com.mukscode.aop.dao.MembershipDAO;
 
@@ -18,10 +19,15 @@ public class MainApplication {
 		MembershipDAO membershipDAO = context.getBean("membershipDAO", MembershipDAO.class);
 		
 		//call the business method
-		theAcctDAO.addAccount();
+		Account myAccount = new Account();
+		theAcctDAO.addAccount(myAccount, true);
+		
+		theAcctDAO.doWork();
 		
 		//call the membership business method
 		membershipDAO.addMember();
+		
+		membershipDAO.goToSleep();
 		
 		
 		//close the context
